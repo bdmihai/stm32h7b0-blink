@@ -36,11 +36,8 @@ void system_init()
 {
     SystemInit();
 
-    RCC_OscInitTypeDef RCC_OscInitStruct = {0};
-    RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
-
     /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-    HAL_Init();
+    assert(HAL_Init() == HAL_OK);
 
     /*AXI clock gating */
     RCC->CKGAENR = 0xFFFFFFFF;
@@ -58,6 +55,7 @@ void system_init()
     /** Initializes the RCC Oscillators according to the specified parameters
      * in the RCC_OscInitTypeDef structure.
      */
+    RCC_OscInitTypeDef RCC_OscInitStruct;
     RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
     RCC_OscInitStruct.HSEState = RCC_HSE_ON;
     RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
@@ -75,6 +73,7 @@ void system_init()
 
     /** Initializes the CPU, AHB and APB buses clocks
      */
+    RCC_ClkInitTypeDef RCC_ClkInitStruct;
     RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
                                 |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2
                                 |RCC_CLOCKTYPE_D3PCLK1|RCC_CLOCKTYPE_D1PCLK1;

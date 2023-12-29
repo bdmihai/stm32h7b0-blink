@@ -27,29 +27,17 @@
  
 #include "stm32h7xx.h"
 #include "stm32h7xx_hal.h"
-#include "stm32rtos.h"
-#include "queue.h"
 #include "gpio.h"
 
 void gpio_init()
 {
-    ///* disable JTAG */
-    //MODIFY_REG(GPIOA->MODER,    GPIO_MODER_MODE15_Msk,     0);                         /* JTDI disabled */
-    //MODIFY_REG(GPIOB->MODER,    GPIO_MODER_MODE4_Msk,      0);                         /* NJTRST disabled */
-    ////MODIFY_REG(GPIOB->MODER,    GPIO_MODER_MODE3_Msk,      0);                         /* JTDO disabled */
-//
-    ///* configure LED pin */
-    //MODIFY_REG(GPIOA->MODER,    GPIO_MODER_MODE1_Msk,       GPIO_MODER_MODE1_0);        /* set the pin as output */
-    //MODIFY_REG(GPIOA->OTYPER,   GPIO_OTYPER_OT1_Msk,        0);                         /* push pull */
-    //MODIFY_REG(GPIOA->OSPEEDR,  GPIO_OSPEEDR_OSPEED1_Msk,   0);                         /* low speed */
-    //MODIFY_REG(GPIOA->PUPDR,    GPIO_PUPDR_PUPD1_Msk,       0);                         /* no pull up, no pull down */
-
-    GPIO_InitTypeDef GPIO_InitStruct = {0};
+    GPIO_InitTypeDef GPIO_InitStruct;
 
     /* GPIO Ports Clock Enable */
     __HAL_RCC_GPIOE_CLK_ENABLE();
-    __HAL_RCC_GPIOC_CLK_ENABLE();
     __HAL_RCC_GPIOH_CLK_ENABLE();
+    __HAL_RCC_GPIOA_CLK_ENABLE();
+    __HAL_RCC_GPIOB_CLK_ENABLE();
 
     /*Configure GPIO pin Output Level */
     HAL_GPIO_WritePin(GPIOE, GPIO_PIN_3, GPIO_PIN_RESET);
