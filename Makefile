@@ -21,14 +21,14 @@
 #| THE USE OR OTHER DEALINGS IN THE SOFTWARE.                                 |
 #|____________________________________________________________________________|
 #|                                                                            |
-#|  Author: Mihai Baneu                           Last modified: 15.Dec.2023  |
+#|  Author: Mihai Baneu                           Last modified: 29.Dec.2023  |
 #|                                                                            |
 #|____________________________________________________________________________|
 
 CONFIG_MCU                  = STM32H7B0VB
 CONFIG_OPENOCD              = /usr/local/bin/openocd
-CONFIG_OPENOCDCONFIGDIR     = /home/mihai/work/tools/openocd/tcl
-CONFIG_OPENOCD_INTERFACE    = interface/stlink.cfg
+CONFIG_OPENOCDCONFIGDIR     = /usr/local/share/openocd/scripts
+CONFIG_OPENOCD_INTERFACE    = interface/stlink-v3.cfg
 CONFIG_OPENOCD_BOARD        = board/stm32h7b0xx.cfg
 
 .PHONY: all build clean
